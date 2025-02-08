@@ -8,17 +8,17 @@ export const Tasks:ITaskNavLinks[] = [
     },
     {
         title:"Today",
-        path:"/",
+        path:"/today",
          icons:"/svg/list.svg"
     },
     {
         title:"Calendar",
-        path:"/",
+        path:"/calendar",
          icons:"/svg/calendar.svg"
     },
     {
         title:"Sticky Wall",
-        path:"/",
+        path:"/sticky-wall",
          icons:"/svg/sticky.svg"
     },
 ]

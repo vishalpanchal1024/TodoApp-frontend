@@ -9,3 +9,8 @@ export interface ITaskNavLinks {
     title:string,
     icons:string
 }
+
+
+export interface ISideBarProps {
+    setShowSideBar:()=>void
+}

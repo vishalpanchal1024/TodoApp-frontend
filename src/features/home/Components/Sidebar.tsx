@@ -1,15 +1,15 @@
 import { Tasks } from "@/constant/Home.constants";
-import { ITaskNavLinks } from "@/shared/types/Home.types";
+import { ISideBarProps, ITaskNavLinks } from "@/shared/types/Home.types";
 import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar: FC = (): ReactElement => {
+const Sidebar: FC<ISideBarProps> = ({setShowSideBar}): ReactElement => {
   return (
     <div className="h-full bg-[#F4F4F4] w-full p-2 text-gray-600" >
       {/* head */}
       <div className="flex items-center justify-between px-2" >
         <span className="text-xl font-bold  " >Menu</span>
-        <span className="flex hover:bg-gray-200 rounded-full px-1 py-1 cursor-pointer">
+        <span onClick={setShowSideBar} className="flex hover:bg-gray-200 rounded-full px-1 py-1 cursor-pointer">
           <img src="/svg/bar.svg" alt="bar" />
         </span>
       </div>
