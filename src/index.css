@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+@font-face {
+    font-family: main;
+    src: url("/public/fonts/LexendDeca.ttf");
+}
+
+
+html {
+    font-family: main;
+}
