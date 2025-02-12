@@ -3,7 +3,7 @@ import { FC, ReactElement } from "react"
 
 const Layout: FC<IAuthLayout> = ({ children }): ReactElement => {
     return (
-        <div className='flex h-screen w-full p-8 md:p-20 md:gap-5 ' >
+        <div className='flex py-10 md:py-0 md:h-screen w-full p-8 md:p-20 md:gap-5 ' >
             {/* left side */}
             <div className="bg-gray-800 text-white flex-1 md:flex flex-col justify-center items-center p-8 rounded-2xl hidden ">
                 <h2 className="text-4xl font-bold mb-6">Welcome to Todo App</h2>
@@ -17,7 +17,7 @@ const Layout: FC<IAuthLayout> = ({ children }): ReactElement => {
             </div>
 
             {/* right side */}
-            <div className="flex-1 shadow-sm shadow-gray-300 bg-white rounded-2xl flex items-center justify-center">
+            <div className="flex-1 shadow-sm shadow-gray-300 bg-white rounded-2xl flex items-center justify-center py-10">
                 {children}
             </div>
         </div>
