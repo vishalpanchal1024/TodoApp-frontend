@@ -3,9 +3,9 @@ import { ISideBarProps, ITaskNavLinks } from "@/shared/types/Home.types";
 import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar: FC<ISideBarProps> = ({setShowSideBar}): ReactElement => {
+const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
   return (
-    <div className="h-full bg-[#F4F4F4] w-full p-2 text-gray-600" >
+    <div className="h-full bg-[#F4F4F4] w-full p-2 text-gray-600 relative" >
       {/* head */}
       <div className="flex items-center justify-between px-2" >
         <span className="text-xl font-bold  " >Menu</span>
@@ -34,11 +34,40 @@ const Sidebar: FC<ISideBarProps> = ({setShowSideBar}): ReactElement => {
         }
       </div>
 
+      {/* Lists  */}
       <div className="px-2 py-5">
         <h3 className="text-xs font-bold mb-3" >LISTS</h3>
-       
+        <div className="flex items-center gap-2 text-sm px-3 py-2  hover:bg-gray-200 rounded-lg" >
+          <img src="/svg/plus.svg" />
+          <span>Add New List</span>
+        </div>
       </div>
-      
+
+      {/* tags */}
+
+      <div className="px-2 py-5">
+        <h3 className="text-xs font-bold mb-3" >Tags</h3>
+        <div>
+          <button className="flex items-center gap-1 text-sm py-1 px-2  hover:bg-gray-200 rounded-lg" >
+            <img src="/svg/plus.svg" />
+            <span>Add Tags</span>
+          </button>
+        </div>
+
+      </div>
+
+      {/* end of sidebar */}
+      <div className="absolute bottom-5 left-3 right-3 z-20" >
+        <Link to={""} className="flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium" >
+        <img src="/svg/settings.svg" />
+          settings
+        </Link>
+        <Link to={""} className="flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium" >
+        <img src="/svg/signout.svg" />
+          Sign out
+        </Link>
+      </div>
+
     </div>
   );
 };
