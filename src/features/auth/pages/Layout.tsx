@@ -3,9 +3,9 @@ import { FC, ReactElement } from "react"
 
 const Layout: FC<IAuthLayout> = ({ children }): ReactElement => {
     return (
-        <div className='flex h-screen w-full p-20 gap-5 ' >
+        <div className='flex h-screen w-full p-8 md:p-20 md:gap-5 ' >
             {/* left side */}
-            <div className="bg-gray-800 text-white flex-1 flex flex-col justify-center items-center p-8 rounded-2xl">
+            <div className="bg-gray-800 text-white flex-1 md:flex flex-col justify-center items-center p-8 rounded-2xl hidden ">
                 <h2 className="text-4xl font-bold mb-6">Welcome to Todo App</h2>
                 <div className="relative w-64 h-64">
                     {/* Abstract Design */}
