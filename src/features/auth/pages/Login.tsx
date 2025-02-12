@@ -1,7 +1,8 @@
-import { FC, ReactElement } from 'react'
+import { FC, ReactElement, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const Login: FC = (): ReactElement => {
+    const [showPassword,setShowPassword] = useState<boolean>(false)
     return (
         <form className='w-[80%]'>
             <h2 className="text-4xl font-bold mb-6">Sign in</h2>
@@ -9,8 +10,11 @@ const Login: FC = (): ReactElement => {
                 <div className='flex  w-full h-12 border-2 border-gray-200 rounded-lg  ' >
                     <input type='text' placeholder='Username or email' className='w-full h-full px-2 rounded-lg ' />
                 </div>
-                <div className='flex  w-full h-12 border-2 border-gray-200 rounded-lg  ' >
-                    <input type='password' placeholder='Password' className='w-full h-full px-2 rounded-lg ' />
+                <div className='flex  w-full h-12 border-2 border-gray-200 rounded-lg  relative' >
+                    <input type={showPassword ? "text" :'password'} placeholder='Password' className='w-full h-full px-2 rounded-lg ' />
+                    <span className='absolute top-[50%] right-2 -translate-y-[50%]' onClick={()=>setShowPassword(!showPassword)}>
+                       {showPassword ? <img src='/svg/slaceEye.svg'/> : <img src='/svg/eye.svg' />}
+                    </span>
                 </div>
                 <Link to="/forget" className='text-right text-blue-500 font-medium text-lg' >Forgot Password</Link>
             </div>

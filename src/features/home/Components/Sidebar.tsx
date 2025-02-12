@@ -1,9 +1,12 @@
 import { Tasks } from "@/constant/Home.constants";
 import { ISideBarProps, ITaskNavLinks } from "@/shared/types/Home.types";
-import { FC, ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { FC, ReactElement, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
+  const location = useLocation()
+  // const [activeRoute,setActiveRoute] = useState()
+  // console.log(location)
   return (
     <div className="h-full bg-[#F4F4F4] w-full p-2 text-gray-600 relative" >
       {/* head */}
@@ -25,11 +28,11 @@ const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
         <h3 className="text-xs font-bold mb-3" >TASKS</h3>
         {
           Tasks.map((item: ITaskNavLinks) => (
-            <Link to={item.path} className="flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center justify-between group" >
+            <NavLink to={item.path} key={item.path} className={` ${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center justify-between group [&.active]:bg-gray-200`} >
               <span className="flex gap-2"><img src={item.icons} alt={item.icons} />{item.title}</span>
               {item.title === "Upcoming" && <span className=" px-2 bg-gray-200 group-hover:bg-white rounded-full" >1</span>}
               {item.title === "Today" && <span className=" px-2 bg-gray-200 group-hover:bg-white rounded-full" >1</span>}
-            </Link>
+            </NavLink>
           ))
         }
       </div>
