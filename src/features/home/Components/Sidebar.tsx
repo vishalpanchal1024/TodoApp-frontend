@@ -1,9 +1,22 @@
 import { Tasks } from "@/constant/Home.constants";
 import { ISideBarProps, ITaskNavLinks } from "@/shared/types/Home.types";
-import { FC, ReactElement,} from "react";
+import { FC, ReactElement, useEffect, useState,} from "react";
 import { Link, NavLink,} from "react-router-dom";
 
 const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
+  const [screenWidth,setScreenWidth] = useState<number>(0)
+
+  useEffect(() => {
+    
+    setScreenWidth(window.innerWidth)
+    window.addEventListener('resize', ()=>{
+      setScreenWidth(window.innerWidth)
+    });
+
+    return () => {
+      window.removeEventListener('resize', ()=>{});
+    };
+  }, []); 
 
   return (
     <div className="h-full bg-[#F4F4F4] w-full p-2 text-gray-600 relative" >
@@ -26,7 +39,7 @@ const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
         <h3 className="text-xs font-bold mb-3" >TASKS</h3>
         {
           Tasks.map((item: ITaskNavLinks) => (
-            <NavLink to={item.path} key={item.path} className={` ${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center justify-between group [&.active]:bg-gray-200`} onClick={setShowSideBar} >
+            <NavLink state={item.title} to={item.path} key={item.path} className={` ${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center justify-between group [&.active]:bg-gray-200`} onClick={()=> {screenWidth < 767 && setShowSideBar()}} >
               <span className="flex gap-2"><img src={item.icons} alt={item.icons} />{item.title}</span>
               {item.title === "Upcoming" && <span className=" px-2 bg-gray-200 group-hover:bg-white rounded-full" >1</span>}
               {item.title === "Today" && <span className=" px-2 bg-gray-200 group-hover:bg-white rounded-full" >1</span>}
@@ -58,8 +71,8 @@ const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
       </div>
 
       {/* end of sidebar */}
-      <div className="absolute bottom-5 left-3 right-3 z-20" onClick={setShowSideBar} >
-        <NavLink to={"/settings"} className={`${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium [&.active]:bg-gray-200`} >
+      <div className="absolute bottom-5 left-3 right-3 z-20" onClick={()=> {screenWidth < 767 && setShowSideBar()}}>
+        <NavLink state={"Settings"}   to={"/settings"} className={`${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium [&.active]:bg-gray-200`} >
         <img src="/svg/settings.svg" />
           settings
         </NavLink>

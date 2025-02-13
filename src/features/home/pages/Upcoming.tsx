@@ -2,9 +2,10 @@ import { AddTasks } from "@/lazylord/homePages";
 import { FC, ReactElement } from "react"
 
 const Upcoming: FC = (): ReactElement => {
+
   return (
     <div className="w-full">
-      <h2 className=" text-3xl md:text-5xl mb-10" >Upcoming</h2>
+     
       {/* Today Taks List */}
       <div className="w-full min-h-40 border rounded-2xl border-gray-200 p-4" >
         <h3 className="text-2xl font-medium my-2" >Today</h3>
