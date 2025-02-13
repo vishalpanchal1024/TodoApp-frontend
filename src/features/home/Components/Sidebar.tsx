@@ -26,7 +26,7 @@ const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
         <h3 className="text-xs font-bold mb-3" >TASKS</h3>
         {
           Tasks.map((item: ITaskNavLinks) => (
-            <NavLink to={item.path} key={item.path} className={` ${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center justify-between group [&.active]:bg-gray-200`} >
+            <NavLink to={item.path} key={item.path} className={` ${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center justify-between group [&.active]:bg-gray-200`} onClick={setShowSideBar} >
               <span className="flex gap-2"><img src={item.icons} alt={item.icons} />{item.title}</span>
               {item.title === "Upcoming" && <span className=" px-2 bg-gray-200 group-hover:bg-white rounded-full" >1</span>}
               {item.title === "Today" && <span className=" px-2 bg-gray-200 group-hover:bg-white rounded-full" >1</span>}
@@ -58,7 +58,7 @@ const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
       </div>
 
       {/* end of sidebar */}
-      <div className="absolute bottom-5 left-3 right-3 z-20" >
+      <div className="absolute bottom-5 left-3 right-3 z-20" onClick={setShowSideBar} >
         <NavLink to={"/settings"} className={`${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium [&.active]:bg-gray-200`} >
         <img src="/svg/settings.svg" />
           settings
