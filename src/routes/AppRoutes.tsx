@@ -1,5 +1,5 @@
 import { AuthLayout, ForgetPassword, Login, Register } from "@/lazylord/AuthPages";
-import { Calendar, HomeLayout, StickyWall, Today, Upcomming } from "@/lazylord/homePages";
+import { Calendar, HomeLayout, Settings, StickyWall, Today, Upcomming } from "@/lazylord/homePages";
 import { Suspense } from "react";
 import {RouteObject, useRoutes } from "react-router-dom";
 
@@ -35,6 +35,10 @@ const AppRoutes = () => {
             path:"/sticky-wall",
             element:<Suspense><HomeLayout><StickyWall/></HomeLayout></Suspense>
         },
+        {
+            path:"/settings",
+            element:<Suspense><HomeLayout><Settings/></HomeLayout></Suspense>
+        }
     ]
 
     return useRoutes(routes)

@@ -1,12 +1,10 @@
 import { Tasks } from "@/constant/Home.constants";
 import { ISideBarProps, ITaskNavLinks } from "@/shared/types/Home.types";
-import { FC, ReactElement, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { FC, ReactElement,} from "react";
+import { Link, NavLink,} from "react-router-dom";
 
 const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
-  const location = useLocation()
-  // const [activeRoute,setActiveRoute] = useState()
-  // console.log(location)
+
   return (
     <div className="h-full bg-[#F4F4F4] w-full p-2 text-gray-600 relative" >
       {/* head */}
@@ -61,10 +59,10 @@ const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
 
       {/* end of sidebar */}
       <div className="absolute bottom-5 left-3 right-3 z-20" >
-        <Link to={""} className="flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium" >
+        <NavLink to={"/settings"} className={`${({isActive}:any)=>isActive ? "bg-gray-200" : ""} flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium [&.active]:bg-gray-200`} >
         <img src="/svg/settings.svg" />
           settings
-        </Link>
+        </NavLink>
         <Link to={""} className="flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium" >
         <img src="/svg/signout.svg" />
           Sign out
