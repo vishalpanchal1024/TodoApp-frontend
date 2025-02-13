@@ -1,7 +1,7 @@
 import { Tasks } from "@/constant/Home.constants";
 import { ISideBarProps, ITaskNavLinks } from "@/shared/types/Home.types";
 import { FC, ReactElement, useEffect, useState,} from "react";
-import { Link, NavLink,} from "react-router-dom";
+import { Link, NavLink, } from "react-router-dom";
 
 const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
   const [screenWidth,setScreenWidth] = useState<number>(0)
