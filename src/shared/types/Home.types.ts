@@ -14,3 +14,8 @@ export interface ITaskNavLinks {
 export interface ISideBarProps {
     setShowSideBar:()=>void
 }
+
+export interface IAddTaskProp{
+    setOpenModal:()=>void;
+    openModal?:boolean;
+}

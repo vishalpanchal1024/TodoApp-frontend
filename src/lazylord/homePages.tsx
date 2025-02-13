@@ -1,4 +1,4 @@
-import { IHomeLayout, ISideBarProps } from "@/shared/types/Home.types";
+import { IAddTaskProp, IHomeLayout, ISideBarProps } from "@/shared/types/Home.types";
 import { FC, lazy, LazyExoticComponent } from "react";
 
 // auth pages lazyLoard
@@ -16,7 +16,8 @@ export const Settings:LazyExoticComponent<FC> = lazy(()=>import("@/features/home
 
 // auth components lazyLoard
 export const Sidebar:LazyExoticComponent<FC<ISideBarProps>> = lazy(()=>import("@/features/home/Components/Sidebar"));
-export const AddTasks:LazyExoticComponent<FC> = lazy(()=>import("@/features/home/Components/AddTaks"))
+export const AddTasks:LazyExoticComponent<FC<IAddTaskProp>> = lazy(()=>import("@/features/home/Components/AddTaks"));
+export const AddTaskModal:LazyExoticComponent<FC<IAddTaskProp>> = lazy(()=>import("@/features/home/Components/AddTaskModal"));;
 
 
 

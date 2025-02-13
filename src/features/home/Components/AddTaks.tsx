@@ -1,10 +1,11 @@
+import { IAddTaskProp } from "@/shared/types/Home.types";
 import { FC, ReactElement } from "react"
 
-const AddTaks: FC = (): ReactElement => {
+const AddTaks: FC<IAddTaskProp> = ({setOpenModal}): ReactElement => {
     return (
         <div className="w-full">
             {/* add tasks button */}
-            <div className="flex items-center gap-2 text-gray-600 w-full border border-gray-200  px-3 font-medium rounded-md py-2 cursor-pointer hover:bg-gray-200" >
+            <div className="flex items-center gap-2 text-gray-600 w-full border border-gray-200  px-3 font-medium rounded-md py-2 cursor-pointer hover:bg-gray-200" onClick={setOpenModal} >
                 <img src="/svg/plus.svg" alt="" />
                 Add New Task
             </div>
