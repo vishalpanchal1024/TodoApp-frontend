@@ -1,4 +1,4 @@
-import { AddTasks } from "@/lazylord/homePages";
+import { AddTaskModal, AddTasks } from "@/lazylord/homePages";
 import { FC, ReactElement, useState } from "react"
 
 
@@ -8,6 +8,7 @@ const Today:FC = ():ReactElement => {
   return (
     <div>
       <AddTasks setOpenModal={()=>setOpenModal(true)} />
+       <AddTaskModal setOpenModal={()=>setOpenModal(false)} openModal={openModal} />
     </div>
   );
 };

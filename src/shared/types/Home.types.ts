@@ -19,3 +19,8 @@ export interface IAddTaskProp{
     setOpenModal:()=>void;
     openModal?:boolean;
 }
+
+export interface IAddStickyWallProp {
+    setShowModal:()=>void;
+    showModal?:boolean
+}
