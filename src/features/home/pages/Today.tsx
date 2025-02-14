@@ -1,11 +1,12 @@
 import { AddTasks } from "@/lazylord/homePages";
-import { FC, ReactElement } from "react"
+import { FC, ReactElement, useState } from "react"
 
 
 const Today:FC = ():ReactElement => {
+  const [openModal, setOpenModal] = useState<boolean>(false);
   return (
     <div>
-      <AddTasks />
+      <AddTasks setOpenModal={()=>setOpenModal(true)} />
     </div>
   );
 };
