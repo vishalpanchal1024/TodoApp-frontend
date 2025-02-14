@@ -3,7 +3,6 @@ import EditorJS from '@editorjs/editorjs';
 import Header from "@editorjs/header";
 import EditorjsList from "@editorjs/list";
 import { IAddStickyWallProp } from "@/shared/types/Home.types";
-import { ColorsSelectable } from "@/constant/colors";
 
 const AddStickyWall: FC<IAddStickyWallProp> = ({ setShowModal, showModal }): ReactElement => {
 
