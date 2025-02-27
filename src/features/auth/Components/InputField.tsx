@@ -29,18 +29,9 @@ const InputField: FC<InputFieldProps> = ({
 
   return (
     <div className="mb-1">
-      {/* Label */}
-      {label && (
-        <label
-          htmlFor={name}
-          className="block text-sm font-medium text-gray-700 mb-2"
-        >
-          {label}
-        </label>
-      )}
-
+  
       {/* Input Container */}
-      <div className="relative flex  w-full h-10 border-2 border-gray-200 rounded-lg ">
+      <div className="relative flex  w-full h-12 border-2 border-gray-200 rounded-lg ">
         {/* Left Icon */}
         
 
@@ -52,7 +43,7 @@ const InputField: FC<InputFieldProps> = ({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          className={`w-full  "pl-4" ${showPassword ? "pr-12" : "pr-4"} w-full h-full px-2 rounded-lg text-xs `}
+          className={`w-full  "pl-4" ${showPassword ? "pr-12" : "pr-4"} w-full h-full px-2 rounded-lg text-lg `}
           placeholder={placeholder}
           aria-label={label || placeholder}
         />
