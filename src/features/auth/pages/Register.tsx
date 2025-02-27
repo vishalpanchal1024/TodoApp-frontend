@@ -14,7 +14,7 @@ const Register: FC = (): ReactElement => {
         }
     })
     return (
-        <form className='w-[80%]'>
+        <form className='w-[80%] '>
             <h2 className="text-4xl font-bold mb-6">Join Us ! </h2>
             <h4 className="text-sm text-gray-500 font-semibold mb-6">Please fill in the details to create your account. </h4>
             <div className='flex flex-col gap-3' >
@@ -66,7 +66,7 @@ const Register: FC = (): ReactElement => {
                     placeholder="Enter your Email Address"
                     name="department"
                 />
-                <InputField
+                {/* <InputField
                     label={"Occupation"}
                     type={"text"}
                     showPassword={false}
@@ -86,7 +86,7 @@ const Register: FC = (): ReactElement => {
                     onChange={handleChange}
                     placeholder="Enter your Description"
                     name="full_name"
-                />
+                /> */}
                 <InputField
                     label={"Password"}
                     type={"password"}
@@ -105,18 +105,18 @@ const Register: FC = (): ReactElement => {
                     className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     required
                 />
-                <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
+                <label htmlFor="terms" className="ml-2 text-xs text-gray-600">
                     I agree to the{' '}
                     <a href="#" className="text-blue-600 hover:text-blue-700">Terms of Service</a>
                     {' '}and{' '}
                     <a href="#" className="text-blue-600 hover:text-blue-700">Privacy Policy</a>
                 </label>
             </div>
-            <button className='cursor-pointer w-full h-12 bg-[#FFD43B] rounded-lg my-5 font-medium text-xl ' >
+            <button className='cursor-pointer w-full h-12 bg-[#FFD43B] rounded-lg my-5 font-medium lg:text-lg ' >
                 Register
             </button>
 
-            <p className='text-center font-medium py-2' >Already have an account? <Link to="/login" className='text-blue-500 cursor-pointer' >Log in</Link></p>
+            <p className='text-center font-medium py-2 lg:text-xs' >Already have an account? <Link to="/login" className='text-blue-500 cursor-pointer' >Log in</Link></p>
         </form>
     );
 };

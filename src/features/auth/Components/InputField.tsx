@@ -40,7 +40,7 @@ const InputField: FC<InputFieldProps> = ({
       )}
 
       {/* Input Container */}
-      <div className="relative flex  w-full h-8 border-2 border-gray-200 rounded-lg ">
+      <div className="relative flex  w-full h-10 border-2 border-gray-200 rounded-lg ">
         {/* Left Icon */}
         
 
@@ -52,7 +52,7 @@ const InputField: FC<InputFieldProps> = ({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          className={`w-full  "pl-4" ${showPassword ? "pr-12" : "pr-4"} w-full h-full px-2 rounded-lg `}
+          className={`w-full  "pl-4" ${showPassword ? "pr-12" : "pr-4"} w-full h-full px-2 rounded-lg text-xs `}
           placeholder={placeholder}
           aria-label={label || placeholder}
         />
