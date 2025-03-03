@@ -1,22 +1,30 @@
 import { FC, ReactElement } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useSignUpMutation } from '@/service/Auth.serveice';
 import { RegisterValidation } from '@/shared/validations/auth';
+import { toast } from 'react-toastify';
 
 const Register: FC = (): ReactElement => {
+    
+    const [signUp, { isLoading }] = useSignUpMutation();
 
-    const [signUp,{isLoading}]  = useSignUpMutation();
+    const navigate = useNavigate();
 
-    const { values,errors,touched,handleSubmit, handleBlur, handleChange } = useFormik({
+    const { values, errors, touched, handleSubmit, handleBlur, handleChange } = useFormik({
         initialValues: { fullname: "", username: "", email: "", password: "" },
         validationSchema: RegisterValidation,
         onSubmit: async (value) => {
             try {
-               const res =  await signUp(value).unwrap();
-               console.log(res);
-            } catch (error) {
-                console.log(error)
+                const res = await signUp(value).unwrap();
+                toast.success(res.message || "Something went wrong")
+                if (res.user.emailVerification) {
+                    navigate("/")
+                } else {
+                    navigate("/verify-otp")
+                }
+            } catch (error: any) {
+                toast.error(error.data.message)
             }
 
         }
@@ -37,7 +45,7 @@ const Register: FC = (): ReactElement => {
                 {touched.username && errors.username ? <p className='text-red-500 text-sm' >{errors.username}</p> : null}
 
                 <div className='flex  w-full h-12 border-2 border-gray-200 rounded-lg  ' >
-                    <input type='email' placeholder='email Address' className='w-full h-full px-2 rounded-lg ' value={values.email} name='email' onChange={handleChange} onBlur={handleBlur}  />
+                    <input type='email' placeholder='email Address' className='w-full h-full px-2 rounded-lg ' value={values.email} name='email' onChange={handleChange} onBlur={handleBlur} />
                 </div>
                 {touched.email && errors.email ? <p className='text-red-500 text-sm' >{errors.email}</p> : null}
 

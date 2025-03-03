@@ -2,21 +2,28 @@ import { useSignInMutation } from '@/service/Auth.serveice';
 import { LoginValidation } from '@/shared/validations/auth';
 import { useFormik } from 'formik';
 import { FC, ReactElement } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login: FC = (): ReactElement => {
 
-    const [signIn,{isLoading}] = useSignInMutation()
+    const [signIn, { isLoading }] = useSignInMutation()
+    const navigate = useNavigate()
 
-    const {values,errors,touched,handleChange,handleBlur,handleSubmit} = useFormik({
-        initialValues:{email:"",password:""},
-        validationSchema:LoginValidation,
-        onSubmit:async (value) => {
+    const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
+        initialValues: { email: "", password: "" },
+        validationSchema: LoginValidation,
+        onSubmit: async (value) => {
             try {
-               const res = await signIn(value).unwrap();
-               console.log(res)
-            } catch (error) {
-                console.log(error)
+                const res = await signIn(value).unwrap();
+                toast.success(res.message || "Something went wrong")
+                if (res.user.emailVerification) {
+                    navigate("/")
+                } else {
+                    navigate("/verify-otp")
+                }
+            } catch (error: any) {
+                toast.error(error.data.message);
             }
         }
     })
@@ -28,12 +35,12 @@ const Login: FC = (): ReactElement => {
                 <div className='flex  w-full h-12 border-2 border-gray-200 rounded-lg  ' >
                     <input type='text' placeholder='Username or email' className='w-full h-full px-2 rounded-lg ' value={values.email} name='email' onChange={handleChange} onBlur={handleBlur} />
                 </div>
-                {touched.email && errors.email && <p className='text-red-500 text-sm' >{errors.email}</p> }
+                {touched.email && errors.email && <p className='text-red-500 text-sm' >{errors.email}</p>}
 
                 <div className='flex  w-full h-12 border-2 border-gray-200 rounded-lg  ' >
                     <input type='password' placeholder='Password' className='w-full h-full px-2 rounded-lg ' value={values.password} name='password' onChange={handleChange} onBlur={handleBlur} />
                 </div>
-                {touched.password && errors.password && <p className='text-red-500 text-sm' >{errors.password}</p> }
+                {touched.password && errors.password && <p className='text-red-500 text-sm' >{errors.password}</p>}
 
                 <Link to="/forget" className='text-right text-blue-500 font-medium text-lg' >Forgot Password</Link>
             </div>
@@ -47,13 +54,13 @@ const Login: FC = (): ReactElement => {
             </div>
             <div className='flex items-center justify-between py-2 px-4' >
                 <button type='button' className=' flex items-center justify-center bg-slate-200 w-full h-10 text-lg font-medium rounded-lg cursor-pointer ' >
-                      <img src="/svg/google.svg" alt="google-icon" className="size-6 " />
-                      <p className='text-xs text-gray-500 font-semibold  pl-6'>
-                        
-                   Login with Google     
-                      </p>
-                       </button>
-               
+                    <img src="/svg/google.svg" alt="google-icon" className="size-6 " />
+                    <p className='text-xs text-gray-500 font-semibold  pl-6'>
+
+                        Login with Google
+                    </p>
+                </button>
+
             </div>
             <p className='text-center font-medium py-2' >Don't have an account? <Link to="/register" className='text-blue-500 cursor-pointer' >Register</Link></p>
         </form>

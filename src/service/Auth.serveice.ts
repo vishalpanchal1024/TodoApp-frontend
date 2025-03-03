@@ -14,12 +14,34 @@ const AuthApi = Api.injectEndpoints({
             },
             invalidatesTags:["Auth"]
         }),
+
         signIn:build.mutation({
             query(body){
                 return {
                     url:"/user/login",
                     method:"POST",
                     body
+                }
+            },
+            invalidatesTags:["Auth"]
+        }),
+
+        verifyOtp:build.mutation({
+            query(body){
+                return {
+                    url:"/user/otp-verification",
+                    method:"POST",
+                    body
+                }
+            },
+            invalidatesTags:["Auth"]
+        }),
+
+        resendOtp:build.mutation({
+            query(){
+                return {
+                    url:"/user/resend-otp",
+                    method:"POST"
                 }
             }
         })
@@ -28,6 +50,8 @@ const AuthApi = Api.injectEndpoints({
 
 export const {
     useSignUpMutation,
-    useSignInMutation
+    useSignInMutation,
+    useVerifyOtpMutation,
+    useResendOtpMutation,
 
 } = AuthApi

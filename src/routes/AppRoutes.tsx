@@ -1,4 +1,4 @@
-import { AuthLayout, ForgetPassword, Login, Register } from "@/lazylord/AuthPages";
+import { AuthLayout, ForgetPassword, Login, OtpVerify, Register } from "@/lazylord/AuthPages";
 import { Calendar, HomeLayout, Settings, StickyWall, Today, Upcomming } from "@/lazylord/homePages";
 import { Suspense } from "react";
 import {RouteObject, useRoutes } from "react-router-dom";
@@ -18,6 +18,10 @@ const AppRoutes = () => {
         {
             path:"/forget",
             element:<Suspense><AuthLayout><ForgetPassword/></AuthLayout></Suspense>
+        },
+        {
+            path:"/verify-otp",
+            element:<Suspense><AuthLayout><OtpVerify/></AuthLayout></Suspense>
         },
         {
             path:"/",
