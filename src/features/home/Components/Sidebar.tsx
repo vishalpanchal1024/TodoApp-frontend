@@ -1,10 +1,27 @@
 import { Tasks } from "@/constant/Home.constants";
+import { useLogoutUserMutation } from "@/service/Auth.serveice";
 import { ISideBarProps, ITaskNavLinks } from "@/shared/types/Home.types";
 import { FC, ReactElement, useEffect, useState,} from "react";
-import { Link, NavLink, } from "react-router-dom";
+import {  NavLink, useNavigate, } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
-  const [screenWidth,setScreenWidth] = useState<number>(0)
+  const [screenWidth,setScreenWidth] = useState<number>(0);
+  const [LogoutUser,{isLoading}] = useLogoutUserMutation();
+  const navigate =  useNavigate();
+
+
+
+  const handleLogout = async () => {
+    try {
+      const res = await LogoutUser("").unwrap();
+      toast.success(res.message);
+      navigate("/login")
+    } catch (error:any) {
+      toast.error(error.data.message);
+    }
+  }
+
 
   useEffect(() => {
     
@@ -76,10 +93,10 @@ const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
         <img src="/svg/settings.svg" />
           settings
         </NavLink>
-        <Link to={""} className="flex gap-2 px-3 py-2  hover:bg-gray-200 rounded-lg text-sm items-center font-medium" >
+        <button type="button" onClick={handleLogout} disabled={isLoading}  className="flex gap-2 px-3 py-2 w-full  hover:bg-gray-200 rounded-lg text-sm items-center font-medium" >
         <img src="/svg/signout.svg" />
           Sign out
-        </Link>
+        </button>
       </div>
 
     </div>

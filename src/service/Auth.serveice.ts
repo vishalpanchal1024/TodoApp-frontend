@@ -49,6 +49,15 @@ const AuthApi = Api.injectEndpoints({
         getLoginUser:build.query({
             query:()=>"/user/logged-in-user",
             providesTags:["Auth"]
+        }),
+
+        LogoutUser:build.mutation({
+            query(){
+                return {
+                    url:"/user/logout",
+                    method:"POST",
+                }
+            }
         })
     })
 })
@@ -59,6 +68,7 @@ export const {
     useSignInMutation,
     useVerifyOtpMutation,
     useResendOtpMutation,
+    useLogoutUserMutation,
 
     // all querys
     useGetLoginUserQuery
