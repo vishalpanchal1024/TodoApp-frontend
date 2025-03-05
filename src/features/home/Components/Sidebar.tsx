@@ -12,11 +12,12 @@ const Sidebar: FC<ISideBarProps> = ({ setShowSideBar }): ReactElement => {
 
 
 
+
   const handleLogout = async () => {
     try {
       const res = await LogoutUser("").unwrap();
       toast.success(res.message);
-      navigate("/login")
+      navigate("/login");
     } catch (error:any) {
       toast.error(error.data.message);
     }

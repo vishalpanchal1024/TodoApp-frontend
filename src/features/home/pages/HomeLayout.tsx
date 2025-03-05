@@ -2,13 +2,23 @@ import { Sidebar } from "@/lazylord/homePages";
 import { useGetLoginUserQuery } from "@/service/Auth.serveice";
 import Loader from "@/shared/components/Loader";
 import { IHomeLayout } from "@/shared/types/Home.types";
-import { FC, ReactElement, useState } from "react";
+import { useAppDispatch } from "@/store/hooks/hooks";
+import { getLogedInUser } from "@/store/Slices/AuthSlices";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
 const HomeLayout: FC<IHomeLayout> = ({ children }): ReactElement => {
   const [showSidebar, setShowSideBar] = useState(false);
   const { data, isLoading } = useGetLoginUserQuery("");
   const { pathname } = useLocation();
+
+  const dispatch  = useAppDispatch();
+
+  useEffect(()=>{
+    if(data?.user){
+      dispatch(getLogedInUser(data.user))
+    }
+  },[data])
 
   if (isLoading) {
     return <Loader />

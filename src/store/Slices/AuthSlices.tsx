@@ -10,7 +10,7 @@ export interface IAuthSlice {
     description: string;
 }
 
-const initialState: IAuthSlice = {
+export const initialState: IAuthSlice = {
     _id: "",
     fullname: "",
     username: "",
@@ -21,20 +21,22 @@ const initialState: IAuthSlice = {
 }
 
 
-export const AuthSlice = createSlice({
+ const AuthSlice = createSlice({
     name: "AuthSlice",
     initialState,
     reducers: {
         getLogedInUser:(state,action:PayloadAction<IAuthSlice>)=>{
-            state._id = action.payload._id;
-            state.description = action.payload.description;
-            state.email = action.payload.email;
-            state.fullname = action.payload.fullname;
-            state.image = action.payload.image;
-            state.occupation = action.payload.occupation;
-            state.username = action.payload.username;
+            state._id = action.payload?._id;
+            state.description = action.payload?.description;
+            state.email = action.payload?.email;
+            state.fullname = action.payload?.fullname;
+            state.image = action.payload?.image;
+            state.occupation = action.payload?.occupation;
+            state.username = action.payload?.username;
         }
     }
 })
 
 export const {getLogedInUser} = AuthSlice.actions;
+
+export {AuthSlice}
