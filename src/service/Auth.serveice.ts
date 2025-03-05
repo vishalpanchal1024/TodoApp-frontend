@@ -44,14 +44,23 @@ const AuthApi = Api.injectEndpoints({
                     method:"POST"
                 }
             }
+        }),
+
+        getLoginUser:build.query({
+            query:()=>"/user/logged-in-user",
+            providesTags:["Auth"]
         })
     })
 })
 
 export const {
+    // all mutations 
     useSignUpMutation,
     useSignInMutation,
     useVerifyOtpMutation,
     useResendOtpMutation,
+
+    // all querys
+    useGetLoginUserQuery
 
 } = AuthApi

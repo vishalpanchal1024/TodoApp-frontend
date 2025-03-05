@@ -1,7 +1,8 @@
 import { useResendOtpMutation, useVerifyOtpMutation } from "@/service/Auth.serveice";
 import { useFormik } from "formik";
 import { FC, ReactElement, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 
 
@@ -10,6 +11,8 @@ const OtpVerify: FC = (): ReactElement => {
     const [verifyOtp, { isLoading }] = useVerifyOtpMutation();
     const [resendOtp] = useResendOtpMutation();
 
+    const navigate = useNavigate();
+
     const [secondsLeft, setSecondsLeft] = useState(60);
 
     const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
@@ -17,23 +20,25 @@ const OtpVerify: FC = (): ReactElement => {
         validationSchema: yup.object({ otp: yup.number().required() }),
         onSubmit: async (value) => {
             try {
-                const res = await verifyOtp(value);
-                console.log(res)
-            } catch (error) {
-                console.log(error)
+                const res = await verifyOtp(value).unwrap();
+                toast.success(res.message);
+                navigate("/")
+            } catch (error:any) {
+                toast.error(error.data.message)
             }
         }
-    })
+    });
 
     const handleResendOtp = async () => {
         console.log("this is running")
         try {
             const res = await resendOtp("").unwrap();
-            console.log(res)
-        } catch (error) {
-            console.log(error)
+            setSecondsLeft(60)
+            toast.success(res.message);
+        } catch (error:any) {
+            toast.error(error.data.message)
         }
-    }
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -59,7 +64,7 @@ const OtpVerify: FC = (): ReactElement => {
                     <span>Seconds Left : {secondsLeft}</span>
                     <button type="button" onClick={handleResendOtp} disabled={secondsLeft !== 0} className={`${secondsLeft !== 0 ? "text-gray-400" : "cursor-pointer"} w-fit py-1 px-3 text-end `} >Resend OTP</button>
                 </div>
-                <button disabled={isLoading}  type='submit' className='cursor-pointer w-full h-12 bg-[#FFD43B] rounded-lg my-5 font-medium text-xl ' >
+                <button disabled={isLoading} type='submit' className='cursor-pointer w-full h-12 bg-[#FFD43B] rounded-lg my-5 font-medium text-xl ' >
                     Verify OTP
                 </button>
 

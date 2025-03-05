@@ -12,7 +12,7 @@ const App: FC = (): ReactElement => {
       <ToastContainer
         position="top-right"
         autoClose={2000}
-        hideProgressBar={true}
+        hideProgressBar={false}
         newestOnTop={false}
         closeOnClick={false}
         rtl={false}
