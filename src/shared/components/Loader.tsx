@@ -1,17 +1,17 @@
 import { FC, ReactElement } from "react";
-import { Hourglass } from "react-loader-spinner";
+import { Triangle } from "react-loader-spinner";
 
 const Loader: FC = (): ReactElement => {
     return (
         <div className="h-screen w-full flex items-center justify-center">
-            <Hourglass
+            <Triangle
                 visible={true}
                 height="80"
                 width="80"
-                ariaLabel="hourglass-loading"
+                color="#4fa94d"
+                ariaLabel="triangle-loading"
                 wrapperStyle={{}}
                 wrapperClass=""
-                colors={['#306cce', '#72a1ed']}
             />
         </div>
     );
